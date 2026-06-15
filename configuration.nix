@@ -10,11 +10,6 @@
       ./hardware-configuration.nix
     ];
 
-  nix.settings = {
-    access-tokens = "github.com=github_pat_XXX";
-    download-buffer-size = 524288000; # 500 MiB
-  };
-
   boot.supportedFilesystems = [ "ntfs" ];
 
   # Bootloader.
@@ -30,9 +25,9 @@
         wallpaperStyle = "stretched";
         interface = {
       	  resolution = "1920x1080";
-      	  helpHidden = lib.mkForce true;
-      	  branding = "G⧊.";
-      	  brandingColor = 7;
+      	  helpHidden = true;
+      	  branding = "GA.";
+      	  brandingColor = "8C2323";
         };
         graphicalTerminal = {
           palette = "212121;FA203D;40FA89;655C47;2F46A3;8A32BD;61B5C2;515151";
@@ -57,7 +52,8 @@
   };
 
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_6_17; #-lto.cachyOverride { mArch = "GENERIC_V4"; };
+  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto; #.cachyOverride { mArch = "GENERIC_V4"; };
+  services.scx.enable = true;
 
   networking.hostName = "tuf"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -106,7 +102,7 @@
   hardware.nvidia = {
     powerManagement.finegrained = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = pkgs.linuxPackages_cachyos-lto.nvidiaPackages.latest;
   };
 
   # Enable the KDE Plasma Desktop Environment.
@@ -204,13 +200,6 @@
   # $ nix search wget
 
   environment.systemPackages = with pkgs; [
-    nixfmt-rfc-style
-
-	  wineWowPackages.yabridge
-	  wineWowPackages.fonts
-	  winetricks
-	  # q4wine #cmake 3.5 problem
-
 	  #vkd3d
 	  #protontricks
 	  #zenity #YAD replacement

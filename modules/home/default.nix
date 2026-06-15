@@ -66,10 +66,9 @@
 	  # 3D
 	  f3d
 	  # python313Packages.f3d
-	  # exhibit
+	  exhibit
 	  prusa-slicer
 	  orca-slicer
-	  #snapmaker-luban #INSECURE. Reason: CVE-2023-5217
 
     # utils
     tlrc # tl;dr in rust - Tealdeer alternative
@@ -121,6 +120,9 @@
     # with more details log output
     nix-output-monitor
     nixos-facter
+    npins
+    nixd
+    nixfmt # A formatter for Nix code
 
     # productivity
     hugo # static site generator
@@ -154,7 +156,6 @@
     wiringpi
     fritzing # cmake 3.5 clipper 6.42 problem
     simulide_1_2_0
-    #eagle
 
     # android cellphones
     android-tools #Android Debug Bridge
@@ -173,7 +174,7 @@
 
     # whatsapp
     whatsapp-emoji-font
-    wasistlos
+    karere # A whatsapp client
 
     # Containers
     kail # Kubernets CLI manager
